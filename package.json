@@ -1,0 +1,22 @@
+{
+  "name": "workshop3-chess",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Real time chess using node.js and websockets!",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tylerjdurden/real-time-chess.git"
+  },
+  "author": "Tyler J. Durden",
+  "license": "ISC",
+  "dependencies": {
+    "chess.js": "^0.10.2",
+    "chessboardjs": "0.0.1",
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  }
+}
