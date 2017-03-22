@@ -1,3 +1,5 @@
+// Game logic
+
 var initGame = function () {
     var cfg = {
         draggable: true,
@@ -21,4 +23,12 @@ var handleMove = function(source, target) {
 	}
 }
 
+// Sockets
+
+// setup my socket client
+var socket = io();
+$('#msgButton').on('click', function(e) {
+	// someone clicked, so send a message
+	socket.emit('message', 'hello world!');
+});
 initGame();
