@@ -1,5 +1,4 @@
-// Game logic
-
+// Set up game board
 var initGame = function () {
     var cfg = {
         draggable: true,
@@ -11,6 +10,10 @@ var initGame = function () {
     game = new Chess();
 }
 
+// Set up socket client
+var socket = io();
+
+// Check for valid move then emit the move
 var handleMove = function(source, target) {
     var move = game.move({from: source, to: target});
 
@@ -20,15 +23,14 @@ var handleMove = function(source, target) {
 	}
 	else{
 		console.log('Valid move!');
+		socket.emit('move', move);
 	}
 }
 
-// Sockets
-
-// setup my socket client
-var socket = io();
-$('#msgButton').on('click', function(e) {
-	// someone clicked, so send a message
-	socket.emit('message', 'hello world!');
+// called when the server calls socket.broadcast('move')
+socket.on('move', function (msg) {
+    game.move(msg);
+    board.position(game.fen()); // fen is the board layout
 });
+
 initGame();

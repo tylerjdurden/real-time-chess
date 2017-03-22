@@ -10,8 +10,8 @@ var io = require('socket.io')(http);
 io.on('connection', function(socket) {
     console.log('New connection');
 
-    socket.on('message', function(msg) {
-        console.log('Got message from client: ' + msg);
+    socket.on('move', function(msg) {
+        socket.broadcast.emit('move', msg);
     });
 });
 
